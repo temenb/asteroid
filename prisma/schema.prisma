@@ -1,0 +1,29 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AsteroidType {
+  UNKNOWN
+  BASE
+  ASTEROID
+  PORTAL
+}
+
+model Asteroid {
+  id             String   @id @default(uuid())
+  galaxy_id      String
+  asteroid_type  AsteroidType
+  axisX          Int
+  axisY          Int
+  health         Int
+  isDestroyed    Boolean
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
