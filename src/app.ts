@@ -14,6 +14,10 @@ server.addService(AsteroidService, {
     // logout: asteroidHandler.logout,
     // forgotPassword: asteroidHandler.forgotPassword,
     // resetPassword: asteroidHandler.resetPassword,
+  health: asteroidHandler.health,
+  status: asteroidHandler.status,
+  livez: asteroidHandler.livez,
+  readyz: asteroidHandler.readyz,
 });
 
 export default server;
