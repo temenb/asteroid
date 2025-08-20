@@ -16,14 +16,52 @@ enum AsteroidType {
   PORTAL
 }
 
+enum AsteroidGrade {
+  UNKNOWN
+  BROKEN
+  NORMAL
+  GOOD
+  LEGEND
+  EPIC
+  RELICT
+}
+
+enum ResourceAmount {
+  UNKNOWN
+  LOW
+  NORMAL
+  HEIGHT
+}
+
+enum ResourceType {
+  UNKNOWN
+  IRON
+  CRYSTAL
+}
+
+enum OwnerType {
+  NONE
+  PLAYER
+  GUILD
+}
+
 model Asteroid {
-  id             String   @id @default(uuid())
-  galaxy_id      String
-  asteroid_type  AsteroidType
-  axisX          Int
-  axisY          Int
-  health         Int
-  isDestroyed    Boolean
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id                String   @id @default(uuid())
+  ownerId           String?
+  ownerType         OwnerType @default(NONE)
+  galaxyId          String
+  asteroidType      AsteroidType
+  asteroidGrade     AsteroidGrade
+  axisX             Int
+  axisY             Int
+  health            Int
+  resourceType      ResourceType @default(UNKNOWN)
+  resourceAmount    ResourceAmount @default(UNKNOWN)
+  deletedAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([galaxyId])
+  @@index([ownerId])
+  @@index([axisX, axisY])
 }
