@@ -9,6 +9,7 @@ export  const config = {
     accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN || '15m',
     refreshTokenExpiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN || '7d',
     rabbitmqQueueProfileCreated: process.env.RABBITMQ_QUEUE_PROFILE_CREATED || 'profile.created',
+    rabbitmqUrl: process.env.RABBITMQ_URL || 'profile.created',
 };
 
 

@@ -49,6 +49,7 @@ model Asteroid {
   id                String   @id @default(uuid())
   ownerId           String?
   ownerType         OwnerType @default(NONE)
+  name              String?
   galaxyId          String
   asteroidType      AsteroidType
   asteroidGrade     AsteroidGrade
