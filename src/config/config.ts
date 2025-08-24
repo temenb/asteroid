@@ -8,8 +8,10 @@ export  const config = {
     refreshTokenSecret: process.env.JWT_REFRESH_SECRET!,
     accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN || '15m',
     refreshTokenExpiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN || '7d',
-    rabbitmqQueueProfileCreated: process.env.RABBITMQ_QUEUE_PROFILE_CREATED || 'profile.created',
-    rabbitmqUrl: process.env.RABBITMQ_URL || 'profile.created',
+    kafkaBrokers: process.env.KAFKA_BROKERS || 'kafka:9092',
+    kafkaClientId: process.env.KAFKA_CLIENT_ID || 'asteroid-client',
+    kafkaTopicAsteroidCreated: process.env.KAFKA_TOPIC_ASTEROID_CREATED || 'asteroid.created',
+    kafkaTopicProfileCreated: process.env.KAFKA_TOPIC_PROFILE_CREATED || 'profile.created',
 };
 
 

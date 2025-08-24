@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { publishToExchange } from "../utils/ampq";
 import config from '../config/config';
+import {broadcastEvent} from "../utils/kafka";
 
 const prisma = new PrismaClient();
 
@@ -31,6 +31,9 @@ export async function upsertAsteroid(ownerId: string) {
       // name: 'Zeta-9',
     },
   });
+
+
+  broadcastEvent(config.kafkaTopicAsteroidCreated, [{ value: JSON.stringify({ id: asteroid.id }) }]);
 
   return asteroid;
 }
