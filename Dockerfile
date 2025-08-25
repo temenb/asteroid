@@ -11,12 +11,13 @@ COPY services/asteroid/package*.json ./services/asteroid/
 COPY services/asteroid/jest.config.js ./services/asteroid/
 COPY services/asteroid/tsconfig.json ./services/asteroid/
 COPY services/asteroid/src ./services/asteroid/src/
+COPY services/asteroid/prisma ./services/asteroid/prisma/
 COPY services/asteroid/__tests__ ./services/asteroid/__tests__/
 
 USER root
-RUN chown -R node:node /usr/src/app
 
 RUN corepack enable && pnpm install
+RUN chown -R node:node /usr/src/app
 
 USER node
 
