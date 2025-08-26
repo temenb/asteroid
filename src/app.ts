@@ -4,7 +4,7 @@ import * as grpc from '@grpc/grpc-js';
 import * as asteroidHandler from "./grpc/handlers/asteroid.handler";
 import config from "./config/config";
 import {initKafka} from "./utils/kafka";
-import initConsumers from "./utils/conumers";
+// import initConsumers from "./utils/conumers";
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ export default server;
 
 async function kafka() {
   await initKafka(config.kafkaClientId);
-  await initConsumers();
+  // await initConsumers();
 }
 
 kafka();

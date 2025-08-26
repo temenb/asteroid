@@ -3,7 +3,7 @@ ENV NODE_ENV=development
 
 WORKDIR /usr/src/app
 
-COPY shared/logger/ ./shared/logger/
+COPY shared/ ./shared/
 COPY turbo.json  ./
 COPY package.json ./
 COPY pnpm-workspace.yaml ./
@@ -26,10 +26,6 @@ RUN corepack enable && pnpm install
 RUN chown -R node:node /usr/src/app
 
 USER node
-
-RUN pnpm --filter @shared/logger build
-RUN pnpm --filter asteroid build
-RUN pnpm --filter asteroid generate
 
 EXPOSE 3000
 

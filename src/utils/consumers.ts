@@ -1,7 +1,7 @@
 import {consumeEvent} from "./kafka";
 import config from "../config/config";
 import {upsertAsteroid} from "../services/asteroid.service";
-import logger from "./logger";
+import logger from "@shared/logger";
 
 export async function initConsumers() {
   await consumeEvent(config.kafkaTopicProfileCreated, async ({topic, partition, message}): Promise<void> => {
