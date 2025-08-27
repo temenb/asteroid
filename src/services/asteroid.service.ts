@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import config from '../config/config';
-import {broadcastEvent} from "../utils/kafka";
+import {createAsteroidProducerConfig, kafkaConfig} from "../config/kafka.config";
+import { createProducer } from '@shared/kafka';
 
 const prisma = new PrismaClient();
 
@@ -33,7 +33,9 @@ export async function upsertAsteroid(ownerId: string) {
   });
 
 
-  broadcastEvent(config.kafkaTopicAsteroidCreated, [{ value: JSON.stringify({ id: asteroid.id }) }]);
+
+  const producer = await createProducer(kafkaConfig);
+  producer.send(createAsteroidProducerConfig, [{ value: JSON.stringify({ id: asteroid.id }) }]);
 
   return asteroid;
 }

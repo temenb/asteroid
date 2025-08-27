@@ -2,7 +2,9 @@ import dotenv from 'dotenv';
 import { AsteroidService } from './generated/asteroid';
 import * as grpc from '@grpc/grpc-js';
 import * as asteroidHandler from "./grpc/handlers/asteroid.handler";
-import config from "./config/config";
+import kafkaConfig, {createProfileConsumerConfig} from "./config/kafka.config";
+import { createConsumer } from '@shared/kafka';
+import {profileCreated} from "./utils/consumers";
 
 dotenv.config();
 
@@ -19,6 +21,11 @@ server.addService(AsteroidService, {
   status: asteroidHandler.status,
   livez: asteroidHandler.livez,
   readyz: asteroidHandler.readyz,
+});
+
+createConsumer(kafkaConfig, {
+  ...createProfileConsumerConfig,
+  handler: profileCreated,
 });
 
 export default server;
