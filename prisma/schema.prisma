@@ -66,3 +66,31 @@ model Asteroid {
   @@index([ownerId])
   @@index([axisX, axisY])
 }
+
+enum PortalType {
+  INACTIVE,
+  OUTBOUND,       // Ракеты уходят из базы (атака)
+  INBOUND,        // Ракеты возвращаются в базу (ремонт или защита)
+  BIDIRECTIONAL,  // Движение в обе стороны
+}
+
+model Portal {
+  id                String   @id @default(uuid())
+  ownerId           String?
+  galaxyFrom        String
+  galaxyTo          String
+  type              PortalType @default(INACTIVE)
+  asteroidGrade     AsteroidGrade
+  axisX             Int
+  axisY             Int
+  health            Int
+
+  deletedAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([galaxyFrom])
+  @@index([galaxyTo])
+  @@index([ownerId])
+  @@index([axisX, axisY])
+}
