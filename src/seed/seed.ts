@@ -1,3 +1,3 @@
-import * as asteroidSeed from './asteroid.seed';
+import * as profileSeed from './asteroid.seed';
 
-asteroidSeed.seedAsteroids();
+profileSeed.seedAsteroids();
