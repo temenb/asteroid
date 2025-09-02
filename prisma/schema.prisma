@@ -68,10 +68,10 @@ model Asteroid {
 }
 
 enum PortalType {
-  INACTIVE,
-  OUTBOUND,       // Ракеты уходят из базы (атака)
-  INBOUND,        // Ракеты возвращаются в базу (ремонт или защита)
-  BIDIRECTIONAL,  // Движение в обе стороны
+  INACTIVE
+  OUTBOUND
+  INBOUND
+  BIDIRECTIONAL
 }
 
 model Portal {
